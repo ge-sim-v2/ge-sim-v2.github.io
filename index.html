@@ -210,13 +210,65 @@
             color: var(--text-secondary);
         }
 
+        .hero-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        .hero-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-link-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--accent);
+            background: rgba(92, 200, 255, 0.08);
+        }
+
+        .hero-link-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .hero-link-badge {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--accent);
+            background: rgba(92, 200, 255, 0.12);
+            padding: 2px 8px;
+            border-radius: 999px;
+            letter-spacing: 0.3px;
+        }
+
         .hero-intro {
-            max-width: 980px;
+            max-width: 860px;
             margin: var(--space-xl) auto 0;
             text-align: left;
             color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
             font-size: 15px;
-            line-height: 1.9;
+            line-height: 1.85;
+            padding: var(--space-lg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.02);
         }
 
         .hero-intro p + p {
@@ -224,7 +276,7 @@
         }
 
         .section {
-            padding: var(--space-xl) var(--space-lg);
+            padding: var(--space-3xl) var(--space-lg) var(--space-xl);
         }
 
         .diagram-section {
@@ -236,9 +288,17 @@
             font-size: 28px;
             font-weight: 600;
             text-align: center;
-            margin-bottom: var(--space-2xl);
+            margin-bottom: var(--space-md);
             letter-spacing: 1px;
             text-transform: uppercase;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 0 auto var(--space-2xl);
+            border-radius: 2px;
         }
 
         .section-intro {
@@ -282,34 +342,68 @@
         }
 
         .capabilities-list,
+        .scenarios-list {
+            gap: var(--space-2xl);
+            counter-reset: none;
+        }
+
         .scenarios-list,
         .demo-groups {
             display: flex;
             flex-direction: column;
-            gap: var(--space-2xl);
+            gap: var(--space-3xl);
+            counter-reset: capability-counter;
         }
 
         .capability-item,
         .scenario-item {
             text-align: center;
+            padding: var(--space-xl) var(--space-lg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.015);
+            position: relative;
+            counter-increment: capability-counter;
+        }
+
+        .capability-item::before {
+            content: counter(capability-counter, decimal-leading-zero);
+            position: absolute;
+            top: var(--space-md);
+            left: var(--space-md);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            opacity: 0.6;
+            letter-spacing: 1px;
         }
 
         .capability-label,
         .scenario-label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            font-size: 17px;
             font-weight: 500;
             color: var(--text-primary);
             line-height: 1.6;
-            margin-bottom: var(--space-md);
+            margin-bottom: var(--space-lg);
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-            letter-spacing: 0.5px;
+            letter-spacing: 0;
+        }
+
+        .scenario-item {
+            counter-increment: none;
+        }
+
+        .scenario-item::before {
+            display: none;
         }
 
         .scenario-label {
-            font-size: 16px;
+            font-size: 18px;
+            font-weight: 600;
             margin-top: var(--space-md);
             margin-bottom: 0;
         }
@@ -376,7 +470,14 @@
             max-width: 960px;
             margin: 0 auto;
             display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: var(--space-lg);
+        }
+
+        @media (max-width: 768px) {
+            .capability-composite {
+                grid-template-columns: 1fr;
+            }
         }
 
         .capability-composite-note {
@@ -391,10 +492,17 @@
 
         .stacked-video-group {
             width: 100%;
-            max-width: 900px;
+            max-width: 960px;
             margin: 0 auto;
             display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 28px;
+        }
+
+        @media (max-width: 768px) {
+            .stacked-video-group {
+                grid-template-columns: 1fr;
+            }
         }
 
         .stacked-video-item {
@@ -576,13 +684,16 @@
         }
 
         .footer {
-            padding: var(--space-xl) var(--space-lg);
+            padding: var(--space-2xl) var(--space-lg);
             text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: var(--space-xl);
         }
 
         .footer p {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-secondary);
+            opacity: 0.6;
         }
 
         .mobile-menu-btn {
@@ -716,7 +827,17 @@
     <!-- Hero Section -->
     <section class="hero" id="top">
         <h1>Genie Envisioner World Simulator 2.0</h1>
-        <p class="subtitle">Paper: Coming Soon</p>
+        <p class="subtitle">A Roadmap Towards Comprehensive Video World Simulators for Robotic Manipulation</p>
+        <div class="hero-links">
+            <a href="#" class="hero-link-btn">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h5v7h7v9H6z"/></svg>
+                Paper <span class="hero-link-badge">Coming Soon</span>
+            </a>
+            <a href="#" class="hero-link-btn">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                Code <span class="hero-link-badge">Coming Soon</span>
+            </a>
+        </div>
     </section>
 
     <!-- Architecture Diagram Section -->
@@ -741,6 +862,7 @@
     <section class="section capabilities-section">
         <div class="container">
             <h2 class="section-title">Capabilities</h2>
+            <div class="section-divider"></div>
             <div class="capabilities-list">
                 <div class="capability-item fade-in">
                     <div class="capability-label">独创的控制信号注入方式，精准动作控制，适配多种本体</div>
@@ -897,6 +1019,7 @@
     <section class="section scenarios-section">
         <div class="container">
             <h2 class="section-title">Application Scenarios</h2>
+            <div class="section-divider"></div>
             <div class="scenarios-list">
                 <div class="scenario-item fade-in">
                     <div class="scenario-label">Evaluation in World Simulator</div>
@@ -1204,7 +1327,7 @@
         const translations = {
             'en': {
                 'hero-title': 'Genie Envisioner World Simulator 2.0',
-                'hero-subtitle': 'Paper: Coming Soon',
+                'hero-subtitle': 'A Comprehensive Embodied World Simulator for Robotic Manipulation',
                 'capabilities-title': 'Capabilities',
                 'scenarios-title': 'Application Scenarios',
                 'scenario-1': 'Evaluation in World Simulator',
@@ -1214,7 +1337,7 @@
             },
             'zh': {
                 'hero-title': 'Genie Envisioner World Simulator 2.0',
-                'hero-subtitle': 'Paper: 即将发布',
+                'hero-subtitle': '面向机器人操作的综合具身世界模拟器',
                 'capabilities-title': '核心能力',
                 'scenarios-title': '应用场景',
                 'scenario-1': '世界模型中的评估',
