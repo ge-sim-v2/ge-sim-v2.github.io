@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GE-Sim2 | Genie Envisioner World Simulator 2.0</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #000000;
+            --bg-surface: rgba(0, 0, 0, 0.94);
+            --bg-elevated: #050505;
+            --text-primary: #f4f7fb;
+            --text-secondary: #9a9a9a;
+            --accent: #5cc8ff;
+            --accent-hover: #89d8ff;
+            --border: rgba(255, 255, 255, 0.12);
+            --shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+            --space-3xl: 96px;
+            --max-width: 1200px;
+            --nav-height: 72px;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'IBM Plex Mono', monospace;
+            background: #000;
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(18px);
+            z-index: 1000;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .nav-header.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .lang-toggle {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: none;
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-toggle:hover {
+            color: var(--text-primary);
+            border-color: var(--accent);
+            background: rgba(92, 200, 255, 0.08);
+        }
+
+        .nav-link {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: var(--space-xs) 0;
+            position: relative;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-primary);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            min-width: 180px;
+            padding: var(--space-xs) 0;
+            list-style: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 10px var(--space-md);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .dropdown-menu li a:hover {
+            background: rgba(92, 200, 255, 0.08);
+            color: var(--text-primary);
+        }
+
+        .hero {
+            position: relative;
+            min-height: auto;
+            padding: calc(var(--nav-height) + var(--space-3xl)) var(--space-lg) var(--space-xl);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            line-height: 1.1;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(18px, 2vw, 24px);
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .hero-intro {
+            max-width: 980px;
+            margin: var(--space-xl) auto 0;
+            text-align: left;
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .hero-intro p + p {
+            margin-top: 14px;
+        }
+
+        .section {
+            padding: var(--space-xl) var(--space-lg);
+        }
+
+        .diagram-section {
+            padding-top: 0;
+        }
+
+        .section-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 28px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .section-intro {
+            max-width: 760px;
+            margin: 0 auto var(--space-2xl);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .diagram-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            border: 2px dashed var(--border);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #030303;
+            box-shadow: var(--shadow);
+        }
+
+        .diagram-placeholder {
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .diagram-container img,
+        .diagram-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .capabilities-list,
+        .scenarios-list,
+        .demo-groups {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2xl);
+        }
+
+        .capability-item,
+        .scenario-item {
+            text-align: center;
+        }
+
+        .capability-label,
+        .scenario-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: var(--space-md);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: 0.5px;
+        }
+
+        .scenario-label {
+            font-size: 16px;
+            margin-top: var(--space-md);
+            margin-bottom: 0;
+        }
+
+        .capability-video,
+        .scenario-video {
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            background: #000;
+            display: block;
+            margin: 0 auto;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            object-fit: contain;
+        }
+
+        .video-badge-wrap {
+            position: relative;
+            width: fit-content;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .video-badge-wrap .capability-video {
+            margin: 0;
+        }
+
+        .video-speed-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 14px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .video-time-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 14px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .capability-composite {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+            display: grid;
+            gap: var(--space-lg);
+        }
+
+        .capability-composite-note {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .stacked-video-group {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            gap: 28px;
+        }
+
+        .stacked-video-item {
+            display: grid;
+            gap: 10px;
+        }
+
+        .stacked-video-note {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            text-align: left;
+        }
+
+        .overlay-video-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .overlay-video-wrap .capability-video {
+            margin: 0;
+        }
+
+        .overlay-video-inset {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            width: min(24%, 180px);
+            aspect-ratio: 1 / 1;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(0, 0, 0, 0.72);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .overlay-video-inset video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .overlay-video-inset-wide {
+            width: min(34%, 260px);
+            aspect-ratio: 5 / 2;
+        }
+
+        .overlay-video-inset-wide video {
+            object-fit: contain;
+        }
+
+        .overlay-video-caption {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 10px;
+            text-align: left;
+        }
+
+        .overlay-video-caption-label {
+            display: block;
+            margin-bottom: 6px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.68);
+        }
+
+        .overlay-video-caption-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #fff;
+        }
+
+        .video-carousel {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .video-carousel-frame {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .video-carousel-track {
+            display: flex;
+            transition: transform 0.45s ease;
+            will-change: transform;
+        }
+
+        .video-carousel-slide {
+            min-width: 100%;
+        }
+
+        .video-carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.72);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 24px;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 3;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .video-carousel-button:hover {
+            background: rgba(0, 0, 0, 0.55);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+        }
+
+        .video-carousel-button:active {
+            background: rgba(0, 0, 0, 0.76);
+            border-color: rgba(255, 255, 255, 0.28);
+            color: #fff;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
+        }
+
+        .video-carousel-button.prev {
+            left: 20px;
+        }
+
+        .video-carousel-button.next {
+            right: 20px;
+        }
+
+        .video-carousel-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-md);
+            margin-top: 12px;
+            padding: 0 4px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .capability-video::-webkit-media-controls,
+        .capability-video::-webkit-media-controls-panel,
+        .capability-video::-webkit-media-controls-timeline,
+        .scenario-video::-webkit-media-controls,
+        .scenario-video::-webkit-media-controls-panel,
+        .scenario-video::-webkit-media-controls-timeline {
+            display: none;
+        }
+
+        .capability-video:hover::-webkit-media-controls,
+        .scenario-video:hover::-webkit-media-controls {
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            background: linear-gradient(transparent, rgba(0,0,0,0.6));
+        }
+
+        .capability-video:hover::-webkit-media-controls-panel,
+        .scenario-video:hover::-webkit-media-controls-panel {
+            display: flex;
+        }
+
+        .footer {
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--space-xs);
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.96);
+                flex-direction: column;
+                padding: var(--space-lg);
+                gap: var(--space-md);
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-menu.active {
+                display: flex;
+                padding-bottom: var(--space-lg);
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .dropdown-menu {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: rgba(92, 200, 255, 0.08);
+                padding-left: var(--space-md);
+            }
+
+            .dropdown:hover .dropdown-menu {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .hero {
+                padding-top: calc(var(--nav-height) + var(--space-xl));
+            }
+
+            .nav-right {
+                display: none;
+            }
+
+            .video-carousel-button {
+                width: 42px;
+                height: 42px;
+                font-size: 20px;
+            }
+
+            .video-carousel-button.prev {
+                left: 12px;
+            }
+
+            .video-carousel-button.next {
+                right: 12px;
+            }
+
+            .video-carousel-meta {
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="nav-header">
+        <nav class="nav-container">
+            <a href="#top" class="nav-logo">GE WorldSim 2.0</a>
+            <div class="nav-right">
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#top" class="nav-link active">GE-Sim2</a></li>
+                    <li><a href="#" class="nav-link">AgiBot</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">Research</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Genie Operator</a></li>
+                            <li><a href="#">Genie Envisioner</a></li>
+                            <li><a href="#">Genie Reasoner</a></li>
+                            <li><a href="#">Genie Sim</a></li>
+                            <li><a href="#">Act2Goal</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <button class="lang-toggle" id="langToggle">中/EN</button>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="top">
+        <h1>Genie Envisioner World Simulator 2.0</h1>
+        <p class="subtitle">Paper: Coming Soon</p>
+    </section>
+
+    <!-- Architecture Diagram Section -->
+    <section class="section diagram-section">
+        <div class="container">
+            <div class="diagram-container">
+                <video autoplay muted loop playsinline controls>
+                    <source src="assets/GE.mp4" type="video/mp4">
+                </video>
+                <span class="diagram-placeholder" style="display:none;">Architecture Diagram</span>
+            </div>
+            <div class="hero-intro">
+                <p>We introduce GE-Sim 2.0, Genie Envisioner World Simulator 2.0, a comprehensive embodied world simulator for robotic manipulation.</p>
+                <p>As an evolution of GE-Sim 1.0, GE-Sim 2.0 extends action-conditioned video simulation with three capabilities for scalable policy evaluation and learning: proprioceptive state estimation, automatic task evaluation, and efficient rollout.</p>
+                <p>By integrating future video generation, proprioceptive state estimation, and reward-based policy assessment, GE-Sim 2.0 moves beyond visual simulation toward an embodied world simulator with built-in evaluation capability, laying the foundation for a world-model-centric platform for closed-loop and interactive policy learning.</p>
+                <p>It provides a practical framework for scalable evaluation and training of robotic manipulation policies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Capabilities Section -->
+    <section class="section capabilities-section">
+        <div class="container">
+            <h2 class="section-title">Capabilities</h2>
+            <div class="capabilities-list">
+                <div class="capability-item fade-in">
+                    <div class="capability-label">独创的控制信号注入方式，精准动作控制，适配多种本体</div>
+                    <div class="capability-composite">
+                        <div>
+                            <div class="capability-composite-note">Zhixing</div>
+                            <video class="capability-video" autoplay muted loop playsinline controls>
+                                <source src="assets/capability_1_op_composite.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div>
+                            <div class="capability-composite-note">OP</div>
+                            <video class="capability-video" autoplay muted loop playsinline controls>
+                                <source src="assets/capability_1_zhixing_composite.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="capability-item fade-in">
+                    <div class="capability-label">头部+左右手三视角生成，稳定的跨视角3D一致性</div>
+                    <video class="capability-video" autoplay muted loop playsinline controls>
+                        <source src="assets/capability_2_cross_view.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="capability-item fade-in">
+                    <div class="capability-label">超长时序一致性</div>
+                    <div class="video-badge-wrap" data-speed-badge data-threshold="5" data-fast-multiplier="5">
+                        <span class="video-time-badge">00:00</span>
+                        <span class="video-speed-badge">x1</span>
+                        <video class="capability-video" autoplay muted loop playsinline controls>
+                            <source src="assets/capability_3_long_sequence_speed.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="capability-item fade-in">
+                    <div class="capability-label">海量真机数据训练，强泛化能力</div>
+                    <div class="video-carousel" data-video-carousel>
+                        <div class="video-carousel-frame">
+                            <button class="video-carousel-button prev" type="button" aria-label="Previous video">&#8249;</button>
+                            <div class="video-carousel-track" data-carousel-track>
+                                <div class="video-carousel-slide">
+                                    <video class="capability-video" autoplay muted loop playsinline controls>
+                                        <source src="assets/capability_4_scene_1.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="video-carousel-slide">
+                                    <video class="capability-video" autoplay muted loop playsinline controls>
+                                        <source src="assets/capability_4_scene_2.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="video-carousel-slide">
+                                    <video class="capability-video" autoplay muted loop playsinline controls>
+                                        <source src="assets/clip8_relayout_768x384.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="video-carousel-slide">
+                                    <video class="capability-video" autoplay muted loop playsinline controls>
+                                        <source src="assets/capability_4_scene_4.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                            <button class="video-carousel-button next" type="button" aria-label="Next video">&#8250;</button>
+                        </div>
+                        <div class="video-carousel-meta">
+                            <span data-carousel-title>Scene 1</span>
+                            <span data-carousel-index>1 / 4</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="capability-item fade-in">
+                    <div class="capability-label">丰富的数据类型，克服幻觉</div>
+                    <div class="stacked-video-group" data-synced-videos>
+                        <div class="stacked-video-item">
+                            <div class="stacked-video-note">Train with Expert, Autonomous Execution, and Failure Demonstration Data</div>
+                            <video class="capability-video" autoplay muted loop playsinline controls>
+                                <source src="assets/capability_5_expert_only.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="stacked-video-item">
+                            <div class="stacked-video-note">Train with Expert Data Only</div>
+                            <video class="capability-video" autoplay muted loop playsinline controls>
+                                <source src="assets/capability_5_rich_data.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="capability-item fade-in">
+                    <div class="capability-label">联合生成机器人本体state信息，多模态world model</div>
+                    <div class="overlay-video-wrap" data-overlay-video>
+                        <video class="capability-video" autoplay muted loop playsinline controls data-overlay-main>
+                            <source src="assets/state_episode30_relayout_768x384.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay-video-inset">
+                            <video autoplay muted loop playsinline data-overlay-inset>
+                                <source src="assets/capability_6_state_radar_episode30.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="capability-item fade-in">
+                    <div class="capability-label">集成reward model, 自动化成功/失败精准判断</div>
+                    <div class="overlay-video-caption">
+                        <span class="overlay-video-caption-label">Task Caption</span>
+                        <span class="overlay-video-caption-text" data-reward-caption-text>Pick up the blue bagged potato chips on the table. Put the held blue bagged potato chips into the red square plastic basket on the table.</span>
+                    </div>
+                    <div class="video-carousel" data-reward-carousel>
+                        <div class="video-carousel-frame">
+                            <button class="video-carousel-button prev" type="button" aria-label="Previous reward case">&#8249;</button>
+                            <div class="video-carousel-track" data-reward-track>
+                                <div class="video-carousel-slide">
+                                    <div class="overlay-video-wrap" data-overlay-video>
+                                        <video class="capability-video" autoplay muted loop playsinline controls data-overlay-main>
+                                            <source src="assets/capability_7_case_1_main.mp4" type="video/mp4">
+                                        </video>
+                                        <div class="overlay-video-inset overlay-video-inset-wide">
+                                            <video autoplay muted loop playsinline data-overlay-inset>
+                                                <source src="assets/capability_7_case_1_reward.mp4" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="video-carousel-slide">
+                                    <div class="overlay-video-wrap" data-overlay-video>
+                                        <video class="capability-video" autoplay muted loop playsinline controls data-overlay-main>
+                                            <source src="assets/capability_7_case_2_main.mp4" type="video/mp4">
+                                        </video>
+                                        <div class="overlay-video-inset overlay-video-inset-wide">
+                                            <video autoplay muted loop playsinline data-overlay-inset>
+                                                <source src="assets/capability_7_case_2_reward.mp4" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="video-carousel-button next" type="button" aria-label="Next reward case">&#8250;</button>
+                        </div>
+                        <div class="video-carousel-meta">
+                            <span data-reward-title>Case 1</span>
+                            <span data-reward-index>1 / 2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="capability-item fade-in">
+                    <div class="capability-label">近实时的高效推理，拒绝长时等待</div>
+                    <video class="capability-video" autoplay muted loop playsinline controls>
+                        <source src="assets/capability_8_fast_inference.mov" type="video/quicktime">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Scenarios Section -->
+    <section class="section scenarios-section">
+        <div class="container">
+            <h2 class="section-title">Application Scenarios</h2>
+            <div class="scenarios-list">
+                <div class="scenario-item fade-in">
+                    <div class="scenario-label">Evaluation in World Simulator</div>
+                    <video class="scenario-video" autoplay muted loop playsinline controls>
+                        <source src="assets/eval.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="scenario-item fade-in">
+                    <div class="scenario-label">Teleoperation in World Simulator</div>
+                    <video class="scenario-video" autoplay muted loop playsinline controls>
+                        <source src="assets/scenario_2_teleoperation_composite.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="scenario-item fade-in">
+                    <div class="scenario-label">Reinforce Learning / Experience Learning in World Simulator</div>
+                    <video class="scenario-video" autoplay muted loop playsinline controls>
+                        <source src="assets/close_loop.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 GE-Sim2. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Navigation scroll shadow
+        const navHeader = document.querySelector('.nav-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navHeader.classList.add('scrolled');
+            } else {
+                navHeader.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('[data-speed-badge]').forEach((wrap) => {
+            const video = wrap.querySelector('video');
+            const badge = wrap.querySelector('.video-speed-badge');
+            const timeBadge = wrap.querySelector('.video-time-badge');
+            const threshold = Number(wrap.dataset.threshold || 5);
+            const fastMultiplier = Number(wrap.dataset.fastMultiplier || 5);
+
+            const formatElapsedTime = (seconds) => {
+                const totalSeconds = Math.max(0, Math.floor(seconds));
+                const hours = Math.floor(totalSeconds / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const secs = totalSeconds % 60;
+
+                if (hours > 0) {
+                    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                }
+
+                return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            };
+
+            const updateBadge = () => {
+                const currentTime = video.currentTime || 0;
+                const actualElapsed = currentTime < threshold
+                    ? currentTime
+                    : threshold + (currentTime - threshold) * fastMultiplier;
+
+                badge.textContent = currentTime < threshold ? 'x1' : `x${fastMultiplier}`;
+                if (timeBadge) {
+                    timeBadge.textContent = formatElapsedTime(actualElapsed);
+                }
+            };
+
+            ['loadedmetadata', 'timeupdate', 'seeked', 'play'].forEach((eventName) => {
+                video.addEventListener(eventName, updateBadge);
+            });
+
+            updateBadge();
+        });
+
+        document.querySelectorAll('[data-video-carousel]').forEach((carousel) => {
+            const track = carousel.querySelector('[data-carousel-track]');
+            const videos = Array.from(carousel.querySelectorAll('.video-carousel-slide video'));
+            const title = carousel.querySelector('[data-carousel-title]');
+            const indexLabel = carousel.querySelector('[data-carousel-index]');
+            const prevButton = carousel.querySelector('.video-carousel-button.prev');
+            const nextButton = carousel.querySelector('.video-carousel-button.next');
+            const items = [
+                {
+                    src: 'demos/demos/多样场景/sample/episode_000000_head_rightstack_768x384.mp4',
+                    title: 'Scene 1'
+                },
+                {
+                    src: 'demos/demos/多样场景/sample/episode_000000_head_rightstack_768x384 2.mp4',
+                    title: 'Scene 2'
+                },
+                {
+                    src: 'assets/clip8_relayout_768x384.mp4',
+                    title: 'Scene 3'
+                },
+                {
+                    src: 'demos/demos/多样场景/sample/episode_000016_head_rightstack_768x384.mp4',
+                    title: 'Scene 4'
+                }
+            ];
+            let currentIndex = 0;
+
+            const renderCarousel = () => {
+                const currentItem = items[currentIndex];
+                title.textContent = currentItem.title;
+                indexLabel.textContent = `${currentIndex + 1} / ${items.length}`;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                videos.forEach((video, index) => {
+                    if (index === currentIndex) {
+                        const playPromise = video.play();
+                        if (playPromise && typeof playPromise.catch === 'function') {
+                            playPromise.catch(() => {});
+                        }
+                    } else {
+                        video.pause();
+                    }
+                });
+            };
+
+            const stepCarousel = (direction) => {
+                currentIndex = (currentIndex + direction + items.length) % items.length;
+                renderCarousel();
+            };
+
+            prevButton.addEventListener('click', () => stepCarousel(-1));
+            nextButton.addEventListener('click', () => stepCarousel(1));
+
+            document.addEventListener('keydown', (event) => {
+                const activeTag = document.activeElement ? document.activeElement.tagName : '';
+                if (activeTag === 'INPUT' || activeTag === 'TEXTAREA') {
+                    return;
+                }
+
+                if (event.key === 'ArrowLeft') {
+                    stepCarousel(-1);
+                }
+
+                if (event.key === 'ArrowRight') {
+                    stepCarousel(1);
+                }
+            });
+
+            renderCarousel();
+        });
+
+        document.querySelectorAll('[data-reward-carousel]').forEach((carousel) => {
+            const track = carousel.querySelector('[data-reward-track]');
+            const slideVideos = Array.from(carousel.querySelectorAll('.video-carousel-slide [data-overlay-main]'));
+            const title = carousel.querySelector('[data-reward-title]');
+            const indexLabel = carousel.querySelector('[data-reward-index]');
+            const caption = carousel.parentElement.querySelector('[data-reward-caption-text]');
+            const prevButton = carousel.querySelector('.video-carousel-button.prev');
+            const nextButton = carousel.querySelector('.video-carousel-button.next');
+            const items = [
+                {
+                    title: 'Case 1',
+                    caption: 'Pick up the blue bagged potato chips on the table. Put the held blue bagged potato chips into the red square plastic basket on the table.'
+                },
+                {
+                    title: 'Case 2',
+                    caption: 'Bring the unlit candle held by right arm close to the lit candle and light it.'
+                }
+            ];
+            let currentIndex = 0;
+
+            const renderCarousel = () => {
+                const currentItem = items[currentIndex];
+                title.textContent = currentItem.title;
+                indexLabel.textContent = `${currentIndex + 1} / ${items.length}`;
+                caption.textContent = currentItem.caption;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                slideVideos.forEach((video, index) => {
+                    if (index === currentIndex) {
+                        const playPromise = video.play();
+                        if (playPromise && typeof playPromise.catch === 'function') {
+                            playPromise.catch(() => {});
+                        }
+                    } else {
+                        video.pause();
+                    }
+                });
+            };
+
+            const stepCarousel = (direction) => {
+                currentIndex = (currentIndex + direction + items.length) % items.length;
+                renderCarousel();
+            };
+
+            prevButton.addEventListener('click', () => stepCarousel(-1));
+            nextButton.addEventListener('click', () => stepCarousel(1));
+
+            renderCarousel();
+        });
+
+        document.querySelectorAll('[data-synced-videos]').forEach((group) => {
+            const videos = Array.from(group.querySelectorAll('video'));
+            if (videos.length < 2) {
+                return;
+            }
+
+            const masterVideo = videos[0];
+            let isSyncing = false;
+
+            const syncTime = () => {
+                if (isSyncing) {
+                    return;
+                }
+
+                isSyncing = true;
+                videos.slice(1).forEach((video) => {
+                    if (Math.abs((video.currentTime || 0) - (masterVideo.currentTime || 0)) > 0.2) {
+                        video.currentTime = masterVideo.currentTime || 0;
+                    }
+                    video.playbackRate = masterVideo.playbackRate;
+                });
+                isSyncing = false;
+            };
+
+            masterVideo.addEventListener('play', () => {
+                syncTime();
+                videos.slice(1).forEach((video) => {
+                    const playPromise = video.play();
+                    if (playPromise && typeof playPromise.catch === 'function') {
+                        playPromise.catch(() => {});
+                    }
+                });
+            });
+
+            masterVideo.addEventListener('pause', () => {
+                videos.slice(1).forEach((video) => video.pause());
+            });
+
+            ['loadedmetadata', 'seeking', 'seeked', 'timeupdate', 'ratechange'].forEach((eventName) => {
+                masterVideo.addEventListener(eventName, syncTime);
+            });
+        });
+
+        document.querySelectorAll('[data-overlay-video]').forEach((wrap) => {
+            const mainVideo = wrap.querySelector('[data-overlay-main]');
+            const insetVideo = wrap.querySelector('[data-overlay-inset]');
+
+            const syncInsetTime = () => {
+                if (Math.abs((insetVideo.currentTime || 0) - (mainVideo.currentTime || 0)) > 0.2) {
+                    insetVideo.currentTime = mainVideo.currentTime || 0;
+                }
+            };
+
+            mainVideo.addEventListener('play', () => {
+                syncInsetTime();
+                const playPromise = insetVideo.play();
+                if (playPromise && typeof playPromise.catch === 'function') {
+                    playPromise.catch(() => {});
+                }
+            });
+
+            mainVideo.addEventListener('pause', () => {
+                insetVideo.pause();
+            });
+
+            ['loadedmetadata', 'seeking', 'seeked', 'timeupdate'].forEach((eventName) => {
+                mainVideo.addEventListener(eventName, syncInsetTime);
+            });
+
+            mainVideo.addEventListener('ratechange', () => {
+                insetVideo.playbackRate = mainVideo.playbackRate;
+            });
+
+            insetVideo.playbackRate = mainVideo.playbackRate;
+        });
+
+        // Language toggle
+        const langToggle = document.getElementById('langToggle');
+        let currentLang = 'en';
+
+        const translations = {
+            'en': {
+                'hero-title': 'Genie Envisioner World Simulator 2.0',
+                'hero-subtitle': 'Paper: Coming Soon',
+                'capabilities-title': 'Capabilities',
+                'scenarios-title': 'Application Scenarios',
+                'scenario-1': 'Evaluation in World Simulator',
+                'scenario-2': 'Teleoperation in World Simulator',
+                'scenario-3': 'Reinforce Learning / Experience Learning in World Simulator',
+                'footer': '© 2026 GE-Sim2. All rights reserved.'
+            },
+            'zh': {
+                'hero-title': 'Genie Envisioner World Simulator 2.0',
+                'hero-subtitle': 'Paper: 即将发布',
+                'capabilities-title': '核心能力',
+                'scenarios-title': '应用场景',
+                'scenario-1': '世界模型中的评估',
+                'scenario-2': '世界模型中的遥操作',
+                'scenario-3': '世界模型中的强化学习 / 经验学习',
+                'footer': '© 2026 GE-Sim2. 保留所有权利.'
+            }
+        };
+
+        const capabilityLabels = document.querySelectorAll('.capability-label');
+        const capabilityLabelsZh = [
+            '独创的控制信号注入方式，精准动作控制，适配多种本体',
+            '头部+左右手三视角生成，稳定的跨视角3D一致性',
+            '超长时序一致性',
+            '海量真机数据训练，强泛化能力',
+            '丰富的数据类型，克服幻觉',
+            '联合生成机器人本体state信息，多模态world model',
+            '集成reward model, 自动化成功/失败精准判断',
+            '近实时的高效推理，拒绝长时等待'
+        ];
+        const capabilityLabelsEn = [
+            'Proprietary control signal injection for precise motion control, adapting to various embodiments',
+            'Head + left/right hand tri-view generation with stable cross-view 3D consistency',
+            'Ultra-long sequence consistency',
+            'Trained on massive real-machine data for strong generalization',
+            'Rich data types overcoming hallucinations',
+            'Joint generation of robot body state info, multimodal world model',
+            'Integrated reward model for automated success/failure judgment',
+            'Near-real-time efficient inference, no long waiting'
+        ];
+
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            langToggle.textContent = currentLang === 'en' ? '中/EN' : 'EN/中';
+
+            const t = translations[currentLang];
+            document.querySelector('.hero h1').textContent = t['hero-title'];
+            document.querySelector('.hero .subtitle').textContent = t['hero-subtitle'];
+            document.querySelector('.capabilities-section .section-title').textContent = t['capabilities-title'];
+            document.querySelector('.scenarios-section .section-title').textContent = t['scenarios-title'];
+
+            const scenarioLabels = document.querySelectorAll('.scenario-label');
+            scenarioLabels[0].textContent = t['scenario-1'];
+            scenarioLabels[1].textContent = t['scenario-2'];
+            scenarioLabels[2].textContent = t['scenario-3'];
+
+            document.querySelector('.footer p').textContent = t['footer'];
+
+            capabilityLabels.forEach((label, i) => {
+                label.textContent = currentLang === 'en' ? capabilityLabelsEn[i] : capabilityLabelsZh[i];
+            });
+        });
+    </script>
+</body>
+</html>
