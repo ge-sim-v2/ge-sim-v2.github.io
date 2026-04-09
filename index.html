@@ -563,6 +563,13 @@
             letter-spacing: 0.06em;
         }
 
+        .generated-video-tag.center-top {
+            top: 14px;
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+        }
+
         .capability-composite-note {
             font-family: 'IBM Plex Mono', monospace;
             font-size: 12px;
@@ -606,6 +613,18 @@
             color: var(--text-secondary);
             text-align: left;
             min-height: 3.2em;
+        }
+
+        .capability-detail-note {
+            width: 100%;
+            max-width: 900px;
+            margin: 10px auto 0;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            line-height: 1.6;
+            letter-spacing: 0.04em;
+            color: var(--text-secondary);
+            text-align: left;
         }
 
         .overlay-video-wrap {
@@ -895,15 +914,15 @@
             <div class="nav-right">
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="#top" class="nav-link active">GE-Sim2</a></li>
-                    <li><a href="#" class="nav-link">AgiBot</a></li>
+                    <li><a href="https://www.agibot.com.cn/" class="nav-link" target="_blank" rel="noopener noreferrer">AgiBot</a></li>
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle">Research</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Genie Operator</a></li>
-                            <li><a href="#">Genie Envisioner</a></li>
-                            <li><a href="#">Genie Reasoner</a></li>
-                            <li><a href="#">Genie Sim</a></li>
-                            <li><a href="#">Act2Goal</a></li>
+                            <li><a href="https://agibot-world.com/blog/go1" target="_blank" rel="noopener noreferrer">Genie Operator</a></li>
+                            <li><a href="https://genie-envisioner.github.io/" target="_blank" rel="noopener noreferrer">Genie Envisioner</a></li>
+                            <li><a href="https://geniereasoner.github.io/GenieReasoner/" target="_blank" rel="noopener noreferrer">Genie Reasoner</a></li>
+                            <li><a href="https://agibot-world.com/genie-sim" target="_blank" rel="noopener noreferrer">Genie Sim</a></li>
+                            <li><a href="https://act2goal.github.io/" target="_blank" rel="noopener noreferrer">Act2Goal</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -989,8 +1008,9 @@
                         <video class="capability-video" autoplay muted loop playsinline controls>
                             <source src="assets/converted/capability_2_cross_view.mp4" type="video/mp4">
                         </video>
-                        <span class="generated-video-tag">generated vision state</span>
+                        <span class="generated-video-tag center-top">generated vision state</span>
                     </div>
+                    <div class="capability-detail-note">The towel is initially hidden in the blind spot of the left view. As the left arm moves, the towel comes into view and remains consistent with the main view.</div>
                 </div>
                 <div class="capability-item fade-in">
                     <div class="capability-label">
@@ -1003,7 +1023,7 @@
                         <video class="capability-video" autoplay muted loop playsinline controls>
                             <source src="assets/converted/capability_3_long_sequence_speed.mp4" type="video/mp4">
                         </video>
-                        <span class="generated-video-tag bottom-left">generated vision state</span>
+                        <span class="generated-video-tag center-top">generated vision state</span>
                     </div>
                 </div>
                 <div class="capability-item fade-in">
@@ -1020,7 +1040,7 @@
                                         <video class="capability-video" autoplay muted loop playsinline controls>
                                             <source src="assets/converted/capability_4_scene_1.mp4" type="video/mp4">
                                         </video>
-                                        <span class="generated-video-tag">generated vision state</span>
+                                        <span class="generated-video-tag center-top">generated vision state</span>
                                     </div>
                                 </div>
                                 <div class="video-carousel-slide">
@@ -1028,7 +1048,7 @@
                                         <video class="capability-video" autoplay muted loop playsinline controls>
                                             <source src="assets/converted/capability_4_scene_2.mp4" type="video/mp4">
                                         </video>
-                                        <span class="generated-video-tag">generated vision state</span>
+                                        <span class="generated-video-tag center-top">generated vision state</span>
                                     </div>
                                 </div>
                                 <div class="video-carousel-slide">
@@ -1036,7 +1056,7 @@
                                         <video class="capability-video" autoplay muted loop playsinline controls>
                                             <source src="assets/converted/clip8_relayout_768x384.mp4" type="video/mp4">
                                         </video>
-                                        <span class="generated-video-tag">generated vision state</span>
+                                        <span class="generated-video-tag center-top">generated vision state</span>
                                     </div>
                                 </div>
                                 <div class="video-carousel-slide">
@@ -1044,7 +1064,7 @@
                                         <video class="capability-video" autoplay muted loop playsinline controls>
                                             <source src="assets/converted/capability_4_scene_4.mp4" type="video/mp4">
                                         </video>
-                                        <span class="generated-video-tag">generated vision state</span>
+                                        <span class="generated-video-tag center-top">generated vision state</span>
                                     </div>
                                 </div>
                             </div>
@@ -1068,7 +1088,7 @@
                                 <video class="capability-video" autoplay muted loop playsinline controls>
                                     <source src="assets/converted/capability_5_expert_only.mp4" type="video/mp4">
                                 </video>
-                                <span class="generated-video-tag">generated vision state</span>
+                                <span class="generated-video-tag center-top">generated vision state</span>
                             </div>
                         </div>
                         <div class="stacked-video-item">
@@ -1077,10 +1097,11 @@
                                 <video class="capability-video" autoplay muted loop playsinline controls>
                                     <source src="assets/converted/capability_5_rich_data.mp4" type="video/mp4">
                                 </video>
-                                <span class="generated-video-tag">generated vision state</span>
+                                <span class="generated-video-tag center-top">generated vision state</span>
                             </div>
                         </div>
                     </div>
+                    <div class="capability-detail-note">When trained with expert data only, hallucination appears: the gripper moves without actually grasping the towel, yet the towel moves with it. With more diverse training data, this hallucination disappears.</div>
                 </div>
                 <div class="capability-item fade-in">
                     <div class="capability-label">
@@ -1091,13 +1112,14 @@
                         <video class="capability-video" autoplay muted loop playsinline controls data-overlay-main>
                             <source src="assets/converted/state_episode30_relayout_768x384.mp4" type="video/mp4">
                         </video>
-                        <span class="generated-video-tag">generated vision state</span>
+                        <span class="generated-video-tag center-top">generated vision state</span>
                         <div class="overlay-video-inset">
                             <video autoplay muted loop playsinline data-overlay-inset>
                                 <source src="assets/converted/capability_6_state_radar_episode30.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
+                    <div class="capability-detail-note">The radar chart in the upper-left shows the difference between the action condition (yellow line) and the model-generated state (blue line).</div>
                 </div>
                 <div class="capability-item fade-in">
                     <div class="capability-label">
@@ -1117,7 +1139,7 @@
                                         <video class="capability-video" autoplay muted loop playsinline controls data-overlay-main>
                                             <source src="assets/converted/capability_7_case_1_main.mp4" type="video/mp4">
                                         </video>
-                                        <span class="generated-video-tag">generated vision state</span>
+                                        <span class="generated-video-tag center-top">generated vision state</span>
                                         <div class="overlay-video-inset overlay-video-inset-wide">
                                             <video autoplay muted loop playsinline data-overlay-inset>
                                                 <source src="assets/converted/capability_7_case_1_reward.mp4" type="video/mp4">
@@ -1130,7 +1152,7 @@
                                         <video class="capability-video" autoplay muted loop playsinline controls data-overlay-main>
                                             <source src="assets/converted/capability_7_case_2_main.mp4" type="video/mp4">
                                         </video>
-                                        <span class="generated-video-tag">generated vision state</span>
+                                        <span class="generated-video-tag center-top">generated vision state</span>
                                         <div class="overlay-video-inset overlay-video-inset-wide">
                                             <video autoplay muted loop playsinline data-overlay-inset>
                                                 <source src="assets/converted/capability_7_case_2_reward.mp4" type="video/mp4">
@@ -1156,7 +1178,7 @@
                         <video class="capability-video" autoplay muted loop playsinline controls>
                             <source src="assets/converted/capability_8_fast_inference.mp4" type="video/mp4">
                         </video>
-                        <span class="generated-video-tag">generated vision state</span>
+                        <span class="generated-video-tag center-top">generated vision state</span>
                     </div>
                 </div>
             </div>
