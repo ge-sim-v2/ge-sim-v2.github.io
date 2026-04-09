@@ -258,13 +258,14 @@
         }
 
         .hero-intro {
-            max-width: 860px;
+            max-width: 680px;
             margin: var(--space-xl) auto 0;
             text-align: left;
             color: var(--text-secondary);
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            line-height: 1.85;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            font-weight: 400;
             padding: var(--space-lg);
             border: 1px solid var(--border);
             border-radius: 16px;
@@ -399,13 +400,14 @@
 
         .capability-label-desc {
             display: block;
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 16px;
             font-weight: 400;
             color: var(--text-secondary);
-            line-height: 1.75;
-            max-width: 720px;
+            line-height: 1.7;
+            max-width: 680px;
             margin: 0 auto;
+            text-align: left;
         }
 
         .scenario-item {
@@ -627,12 +629,12 @@
 
         .capability-detail-note {
             width: 100%;
-            max-width: 900px;
+            max-width: 680px;
             margin: 10px auto 0;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            line-height: 1.6;
-            letter-spacing: 0.04em;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            font-weight: 400;
             color: var(--text-secondary);
             text-align: left;
         }
@@ -1010,7 +1012,7 @@
                 </div>
                 <div class="capability-item fade-in">
                     <div class="capability-label">
-                        <span class="capability-label-title">High-Consistency Multi-View Generation for Precise Robotic World Simulation</span>
+                        <span class="capability-label-title">High-Consistency Multi-View Generation for Precise Robotic World Modeling</span>
                         <span class="capability-label-desc">Generates highly consistent videos across head view and left- and right-hand views, enabling comprehensive modeling of real robot observations and more faithful simulation.</span>
                     </div>
                     <div class="generated-video-wrap">
@@ -1564,7 +1566,7 @@
         const capabilityData = {
             en: [
                 { title: 'Our Signature Control-Signal Injection Mechanism for Precise, Unified Action-Driven Generation', desc: 'By calibrating heterogeneous action spaces and policies into a unified control space, our method enables precise action-conditioned video generation across diverse robotic embodiments.' },
-                { title: 'High-Consistency Multi-View Generation for Precise Robotic World Simulation', desc: 'Generates highly consistent videos across head view and left- and right-hand views, enabling comprehensive modeling of real robot observations and more faithful simulation.' },
+                { title: 'High-Consistency Multi-View Generation for Precise Robotic World Modeling', desc: 'Generates highly consistent videos across head view and left- and right-hand views, enabling comprehensive modeling of real robot observations and more faithful simulation.' },
                 { title: 'Stable and Consistent Minute-Level Video Generation', desc: 'Delivers stable, consistent minute-level video generation, enabling realistic simulation of long-horizon action policies in embodied environments.' },
                 { title: 'Powered by Millions of Real-World Robotic Episodes, Delivering Strong Generalization Across Scenes and Tasks', desc: 'Built on large-scale teleoperation, deployment, and interaction data, the model transfers robustly across diverse environments and manipulation goals.' },
                 { title: 'Diverse Data for Faithful Trajectory Following', desc: 'The diversity of teleoperation, deployment, and interaction data supports richer trajectory coverage, helping the model follow diverse motions more faithfully and reduce hallucinations in video generation.' },
