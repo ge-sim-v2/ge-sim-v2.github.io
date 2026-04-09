@@ -926,7 +926,7 @@
                     <li><a href="#top" class="nav-link active">GE-Sim2</a></li>
                     <li><a href="https://www.agibot.com.cn/" class="nav-link" target="_blank" rel="noopener noreferrer">AgiBot</a></li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle">Research</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-nav-research>Research</a>
                         <ul class="dropdown-menu">
                             <li><a href="https://agibot-world.com/blog/go1" target="_blank" rel="noopener noreferrer">Genie Operator</a></li>
                             <li><a href="https://genie-envisioner.github.io/" target="_blank" rel="noopener noreferrer">Genie Envisioner</a></li>
@@ -953,11 +953,11 @@
         <div class="hero-links">
             <a href="#" class="hero-link-btn">
                 <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h5v7h7v9H6z"/></svg>
-                Paper <span class="hero-link-badge">Coming Soon</span>
+                <span data-hero-paper>Paper</span> <span class="hero-link-badge" data-hero-paper-badge>Coming Soon</span>
             </a>
             <a href="#" class="hero-link-btn">
                 <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                Code <span class="hero-link-badge">Coming Soon</span>
+                <span data-hero-code>Code</span> <span class="hero-link-badge" data-hero-code-badge>Coming Soon</span>
             </a>
         </div>
     </section>
@@ -969,14 +969,13 @@
                 <video autoplay muted loop playsinline controls>
                     <source src="assets/converted/GE.mp4" type="video/mp4">
                 </video>
-                <span class="generated-video-tag">generated vision state</span>
                 <span class="diagram-placeholder" style="display:none;">Architecture Diagram</span>
             </div>
             <div class="hero-intro">
-                <p>We introduce GE-Sim 2.0, Genie Envisioner World Simulator 2.0, a comprehensive embodied world simulator for robotic manipulation.</p>
-                <p>As an evolution of GE-Sim 1.0, GE-Sim 2.0 extends action-conditioned video simulation with three capabilities for scalable policy evaluation and learning: proprioceptive state estimation, automatic task evaluation, and efficient rollout.</p>
-                <p>By integrating future video generation, proprioceptive state estimation, and reward-based policy assessment, GE-Sim 2.0 moves beyond visual simulation toward an embodied world simulator with built-in evaluation capability, laying the foundation for a world-model-centric platform for closed-loop and interactive policy learning.</p>
-                <p>It provides a practical framework for scalable evaluation and training of robotic manipulation policies.</p>
+                <p data-intro="p1">We introduce GE-Sim 2.0, Genie Envisioner World Simulator 2.0, a comprehensive embodied world simulator for robotic manipulation.</p>
+                <p data-intro="p2">As an evolution of GE-Sim 1.0, GE-Sim 2.0 extends action-conditioned video simulation with three capabilities for scalable policy evaluation and learning: proprioceptive state estimation, automatic task evaluation, and efficient rollout.</p>
+                <p data-intro="p3">By integrating future video generation, proprioceptive state estimation, and reward-based policy assessment, GE-Sim 2.0 moves beyond visual simulation toward an embodied world simulator with built-in evaluation capability, laying the foundation for a world-model-centric platform for closed-loop and interactive policy learning.</p>
+                <p data-intro="p4">It provides a practical framework for scalable evaluation and training of robotic manipulation policies.</p>
             </div>
         </div>
     </section>
@@ -989,7 +988,7 @@
             <div class="capabilities-list">
                 <div class="capability-item fade-in">
                     <div class="capability-label">
-                        <span class="capability-label-title">A Novel Control-Signal Injection Paradigm for Precise, Unified Action-Driven Generation</span>
+                        <span class="capability-label-title">Our Signature Control-Signal Injection Mechanism for Precise, Unified Action-Driven Generation</span>
                         <span class="capability-label-desc">By calibrating heterogeneous action spaces and policies into a unified control space, our method enables precise action-conditioned video generation across diverse robotic embodiments.</span>
                     </div>
                     <div class="capability-composite">
@@ -997,15 +996,15 @@
                             <video class="capability-video" autoplay muted loop playsinline controls>
                                 <source src="assets/converted/capability_1_zhixing_composite.mp4" type="video/mp4">
                             </video>
-                            <span class="generated-video-tag top-left-tight">Pixel-aligned Action Condition</span>
-                            <span class="generated-video-tag bottom-right">generated vision state</span>
+                            <span class="generated-video-tag generated-video-tag--action top-left-tight">Pixel-aligned Action Condition</span>
+                            <span class="generated-video-tag generated-video-tag--generated bottom-right">generated vision state</span>
                         </div>
                         <div class="generated-video-card">
                             <video class="capability-video" autoplay muted loop playsinline controls>
                                 <source src="assets/converted/capability_1_op_composite.mp4" type="video/mp4">
                             </video>
-                            <span class="generated-video-tag top-left-tight">Pixel-aligned Action Condition</span>
-                            <span class="generated-video-tag bottom-right">generated vision state</span>
+                            <span class="generated-video-tag generated-video-tag--action top-left-tight">Pixel-aligned Action Condition</span>
+                            <span class="generated-video-tag generated-video-tag--generated bottom-right">generated vision state</span>
                         </div>
                     </div>
                 </div>
@@ -1018,9 +1017,9 @@
                         <video class="capability-video" autoplay muted loop playsinline controls>
                             <source src="assets/converted/capability_2_cross_view.mp4" type="video/mp4">
                         </video>
-                        <span class="generated-video-tag center-top">generated vision state</span>
+                        <span class="generated-video-tag generated-video-tag--generated center-top">generated vision state</span>
                     </div>
-                    <div class="capability-detail-note">The towel is initially hidden in the blind spot of the left view. As the left arm moves, the towel comes into view and remains consistent with the main view. At the same time, the reflection in the mirror is also generated convincingly.</div>
+                    <div class="capability-detail-note" data-detail-note="cross-view">The towel is initially hidden in the blind spot of the left view. As the left arm moves, the towel comes into view and remains consistent with the main view. At the same time, the reflection in the mirror is also generated convincingly.</div>
                 </div>
                 <div class="capability-item fade-in">
                     <div class="capability-label">
@@ -1033,7 +1032,7 @@
                         <video class="capability-video" autoplay muted loop playsinline controls>
                             <source src="assets/converted/capability_3_long_sequence_speed.mp4" type="video/mp4">
                         </video>
-                        <span class="generated-video-tag center-top">generated vision state</span>
+                        <span class="generated-video-tag generated-video-tag--generated center-top">generated vision state</span>
                     </div>
                 </div>
                 <div class="capability-item fade-in">
@@ -1050,7 +1049,7 @@
                                         <video class="capability-video" autoplay muted loop playsinline controls>
                                             <source src="assets/converted/capability_4_scene_1.mp4" type="video/mp4">
                                         </video>
-                                        <span class="generated-video-tag center-top">generated vision state</span>
+                                        <span class="generated-video-tag generated-video-tag--generated center-top">generated vision state</span>
                                     </div>
                                 </div>
                                 <div class="video-carousel-slide">
@@ -1058,7 +1057,7 @@
                                         <video class="capability-video" autoplay muted loop playsinline controls>
                                             <source src="assets/converted/capability_4_scene_2.mp4" type="video/mp4">
                                         </video>
-                                        <span class="generated-video-tag center-top">generated vision state</span>
+                                        <span class="generated-video-tag generated-video-tag--generated center-top">generated vision state</span>
                                     </div>
                                 </div>
                                 <div class="video-carousel-slide">
@@ -1066,7 +1065,7 @@
                                         <video class="capability-video" autoplay muted loop playsinline controls>
                                             <source src="assets/converted/clip8_relayout_768x384.mp4" type="video/mp4">
                                         </video>
-                                        <span class="generated-video-tag center-top">generated vision state</span>
+                                        <span class="generated-video-tag generated-video-tag--generated center-top">generated vision state</span>
                                     </div>
                                 </div>
                                 <div class="video-carousel-slide">
@@ -1074,7 +1073,7 @@
                                         <video class="capability-video" autoplay muted loop playsinline controls>
                                             <source src="assets/converted/capability_4_scene_4.mp4" type="video/mp4">
                                         </video>
-                                        <span class="generated-video-tag center-top">generated vision state</span>
+                                        <span class="generated-video-tag generated-video-tag--generated center-top">generated vision state</span>
                                     </div>
                                 </div>
                             </div>
@@ -1093,25 +1092,25 @@
                     </div>
                     <div class="stacked-video-group" data-synced-videos>
                         <div class="stacked-video-item">
-                            <div class="stacked-video-note">Train with Expert, Autonomous Execution, and Failure Demonstration Data</div>
+                            <div class="stacked-video-note" data-stacked-note="rich-train">Train with Expert, Autonomous Execution, and Failure Demonstration Data</div>
                             <div class="generated-video-wrap">
                                 <video class="capability-video" autoplay muted loop playsinline controls>
                                     <source src="assets/converted/capability_5_expert_only.mp4" type="video/mp4">
                                 </video>
-                                <span class="generated-video-tag center-top-small">generated vision state</span>
+                                <span class="generated-video-tag generated-video-tag--generated center-top-small">generated vision state</span>
                             </div>
                         </div>
                         <div class="stacked-video-item">
-                            <div class="stacked-video-note">Train with Expert Data Only</div>
+                            <div class="stacked-video-note" data-stacked-note="expert-only">Train with Expert Data Only</div>
                             <div class="generated-video-wrap">
                                 <video class="capability-video" autoplay muted loop playsinline controls>
                                     <source src="assets/converted/capability_5_rich_data.mp4" type="video/mp4">
                                 </video>
-                                <span class="generated-video-tag center-top-small">generated vision state</span>
+                                <span class="generated-video-tag generated-video-tag--generated center-top-small">generated vision state</span>
                             </div>
                         </div>
                     </div>
-                    <div class="capability-detail-note">When trained with expert data only, hallucination appears: the gripper moves without actually grasping the towel, yet the towel moves with it. With more diverse training data, this hallucination disappears.</div>
+                    <div class="capability-detail-note" data-detail-note="diverse-data">When trained with expert data only, hallucination appears: the gripper moves without actually grasping the towel, yet the towel moves with it. With more diverse training data, this hallucination disappears.</div>
                 </div>
                 <div class="capability-item fade-in">
                     <div class="capability-label">
@@ -1122,14 +1121,14 @@
                         <video class="capability-video" autoplay muted loop playsinline controls data-overlay-main>
                             <source src="assets/converted/state_episode30_relayout_768x384.mp4" type="video/mp4">
                         </video>
-                        <span class="generated-video-tag center-top">generated vision state</span>
+                        <span class="generated-video-tag generated-video-tag--generated center-top">generated vision state</span>
                         <div class="overlay-video-inset">
                             <video autoplay muted loop playsinline data-overlay-inset>
                                 <source src="assets/converted/capability_6_state_radar_episode30.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
-                    <div class="capability-detail-note">The radar chart in the upper-left shows the difference between the action condition (yellow line) and the model-generated state (blue line).</div>
+                    <div class="capability-detail-note" data-detail-note="state-radar">The radar chart in the upper-left shows the difference between the action condition (yellow line) and the model-generated state (blue line).</div>
                 </div>
                 <div class="capability-item fade-in">
                     <div class="capability-label">
@@ -1137,7 +1136,7 @@
                         <span class="capability-label-desc">An integrated world-judge reward model evaluates generated rollout videos against task instructions, automatically measuring task completion and producing reward signals for policy assessment.</span>
                     </div>
                     <div class="overlay-video-caption">
-                        <span class="overlay-video-caption-label">Task Caption</span>
+                        <span class="overlay-video-caption-label" data-task-caption-label>Task Caption</span>
                         <span class="overlay-video-caption-text" data-reward-caption-text>Put the blue chips into the red box.</span>
                     </div>
                     <div class="video-carousel" data-reward-carousel>
@@ -1149,7 +1148,7 @@
                                         <video class="capability-video" autoplay muted loop playsinline controls data-overlay-main>
                                             <source src="assets/converted/capability_7_case_1_main.mp4" type="video/mp4">
                                         </video>
-                                        <span class="generated-video-tag center-top">generated vision state</span>
+                                        <span class="generated-video-tag generated-video-tag--generated center-top">generated vision state</span>
                                         <div class="overlay-video-inset overlay-video-inset-wide">
                                             <video autoplay muted loop playsinline data-overlay-inset>
                                                 <source src="assets/converted/capability_7_case_1_reward.mp4" type="video/mp4">
@@ -1162,7 +1161,7 @@
                                         <video class="capability-video" autoplay muted loop playsinline controls data-overlay-main>
                                             <source src="assets/converted/capability_7_case_2_main.mp4" type="video/mp4">
                                         </video>
-                                        <span class="generated-video-tag center-top">generated vision state</span>
+                                        <span class="generated-video-tag generated-video-tag--generated center-top">generated vision state</span>
                                         <div class="overlay-video-inset overlay-video-inset-wide">
                                             <video autoplay muted loop playsinline data-overlay-inset>
                                                 <source src="assets/converted/capability_7_case_2_reward.mp4" type="video/mp4">
@@ -1188,7 +1187,7 @@
                         <video class="capability-video" autoplay muted loop playsinline controls>
                             <source src="assets/converted/capability_8_fast_inference.mp4" type="video/mp4">
                         </video>
-                        <span class="generated-video-tag center-top">GE-Sim 2.0 inference screen recording</span>
+                        <span class="generated-video-tag generated-video-tag--inference center-top">GE-Sim 2.0 inference screen recording</span>
                     </div>
                 </div>
             </div>
@@ -1305,6 +1304,22 @@
             updateBadge();
         });
 
+        let currentLang = 'en';
+        const rewardCases = {
+            en: [
+                { title: 'Case 1', caption: 'Put the blue chips into the red box.' },
+                { title: 'Case 2', caption: 'Bring the unlit candle held by right arm close to the lit candle and light it.' }
+            ],
+            zh: [
+                { title: '案例 1', caption: '将蓝色薯片放入红色盒子中。' },
+                { title: '案例 2', caption: '将右臂拿着的未点燃蜡烛靠近已点燃蜡烛，并将其点燃。' }
+            ]
+        };
+        const carouselSceneTitles = {
+            en: ['Scene 1', 'Scene 2', 'Scene 3', 'Scene 4'],
+            zh: ['场景 1', '场景 2', '场景 3', '场景 4']
+        };
+
         document.querySelectorAll('[data-video-carousel]').forEach((carousel) => {
             const track = carousel.querySelector('[data-carousel-track]');
             const videos = Array.from(carousel.querySelectorAll('.video-carousel-slide video'));
@@ -1314,27 +1329,22 @@
             const nextButton = carousel.querySelector('.video-carousel-button.next');
             const items = [
                 {
-                    src: 'demos/demos/多样场景/sample/episode_000000_head_rightstack_768x384.mp4',
-                    title: 'Scene 1'
+                    src: 'demos/demos/多样场景/sample/episode_000000_head_rightstack_768x384.mp4'
                 },
                 {
-                    src: 'demos/demos/多样场景/sample/episode_000000_head_rightstack_768x384 2.mp4',
-                    title: 'Scene 2'
+                    src: 'demos/demos/多样场景/sample/episode_000000_head_rightstack_768x384 2.mp4'
                 },
                 {
-                    src: 'assets/clip8_relayout_768x384.mp4',
-                    title: 'Scene 3'
+                    src: 'assets/clip8_relayout_768x384.mp4'
                 },
                 {
-                    src: 'demos/demos/多样场景/sample/episode_000016_head_rightstack_768x384.mp4',
-                    title: 'Scene 4'
+                    src: 'demos/demos/多样场景/sample/episode_000016_head_rightstack_768x384.mp4'
                 }
             ];
             let currentIndex = 0;
 
             const renderCarousel = () => {
-                const currentItem = items[currentIndex];
-                title.textContent = currentItem.title;
+                title.textContent = carouselSceneTitles[currentLang][currentIndex];
                 indexLabel.textContent = `${currentIndex + 1} / ${items.length}`;
                 track.style.transform = `translateX(-${currentIndex * 100}%)`;
                 videos.forEach((video, index) => {
@@ -1385,18 +1395,16 @@
             const nextButton = carousel.querySelector('.video-carousel-button.next');
             const items = [
                 {
-                    title: 'Case 1',
-                    caption: 'Put the blue chips into the red box.'
+                    key: 'case1'
                 },
                 {
-                    title: 'Case 2',
-                    caption: 'Bring the unlit candle held by right arm close to the lit candle and light it.'
+                    key: 'case2'
                 }
             ];
             let currentIndex = 0;
 
             const renderCarousel = () => {
-                const currentItem = items[currentIndex];
+                const currentItem = rewardCases[currentLang][currentIndex];
                 title.textContent = currentItem.title;
                 indexLabel.textContent = `${currentIndex + 1} / ${items.length}`;
                 caption.textContent = currentItem.caption;
@@ -1508,27 +1516,46 @@
 
         // Language toggle
         const langToggle = document.getElementById('langToggle');
-        let currentLang = 'en';
 
         const translations = {
             'en': {
                 'hero-title': 'Genie Envisioner World Simulator 2.0',
                 'hero-subtitle': 'A Comprehensive Embodied World Simulator for Robotic Manipulation',
+                'intro-p1': 'We introduce GE-Sim 2.0, Genie Envisioner World Simulator 2.0, a comprehensive embodied world simulator for robotic manipulation.',
+                'intro-p2': 'As an evolution of GE-Sim 1.0, GE-Sim 2.0 extends action-conditioned video simulation with three capabilities for scalable policy evaluation and learning: proprioceptive state estimation, automatic task evaluation, and efficient rollout.',
+                'intro-p3': 'By integrating future video generation, proprioceptive state estimation, and reward-based policy assessment, GE-Sim 2.0 moves beyond visual simulation toward an embodied world simulator with built-in evaluation capability, laying the foundation for a world-model-centric platform for closed-loop and interactive policy learning.',
+                'intro-p4': 'It provides a practical framework for scalable evaluation and training of robotic manipulation policies.',
                 'capabilities-title': 'Capabilities',
                 'scenarios-title': 'Application Scenarios',
+                'nav-research': 'Research',
+                'hero-paper': 'Paper',
+                'hero-paper-badge': 'Coming Soon',
+                'hero-code': 'Code',
+                'hero-code-badge': 'Coming Soon',
                 'scenario-1': 'Evaluation in World Simulator',
                 'scenario-2': 'Teleoperation in World Simulator',
                 'scenario-3': 'Close-loop Learning in World Simulator',
+                'task-caption-label': 'Task Caption',
                 'footer': '© 2026 GE-Sim2. All rights reserved.'
             },
             'zh': {
                 'hero-title': 'Genie Envisioner World Simulator 2.0',
-                'hero-subtitle': '面向机器人操作的综合具身世界模拟器',
+                'hero-subtitle': '面向机器人操作的综合具身世界模拟平台',
+                'intro-p1': '我们提出 GE-Sim 2.0，即 Genie Envisioner World Simulator 2.0，一个面向机器人操作任务的综合具身世界模拟平台。',
+                'intro-p2': '作为 GE-Sim 1.0 的延伸，GE-Sim 2.0 在动作条件视频模拟的基础上进一步引入了三项关键能力，用于支持可扩展的策略评估与学习：本体状态估计、自动任务评估以及高效 rollout。',
+                'intro-p3': '通过融合未来视频生成、本体状态估计以及基于奖励的策略评测能力，GE-Sim 2.0 从单纯的视觉模拟进一步发展为具备内生评估能力的具身世界模拟平台，为以世界模型为核心的闭环与交互式策略学习奠定了基础。',
+                'intro-p4': '它为机器人操作策略的大规模评估与训练提供了一个切实可行的框架。',
                 'capabilities-title': '核心能力',
                 'scenarios-title': '应用场景',
-                'scenario-1': '世界模型中的评估',
+                'nav-research': '相关工作',
+                'hero-paper': '论文',
+                'hero-paper-badge': '即将发布',
+                'hero-code': '代码',
+                'hero-code-badge': '即将发布',
+                'scenario-1': '世界模型中的策略评估',
                 'scenario-2': '世界模型中的遥操作',
                 'scenario-3': '世界模型中的闭环学习',
+                'task-caption-label': '任务描述',
                 'footer': '© 2026 GE-Sim2. 保留所有权利.'
             }
         };
@@ -1536,7 +1563,7 @@
         const capabilityLabels = document.querySelectorAll('.capability-label');
         const capabilityData = {
             en: [
-                { title: 'A Novel Control-Signal Injection Paradigm for Precise, Unified Action-Driven Generation', desc: 'By calibrating heterogeneous action spaces and policies into a unified control space, our method enables precise action-conditioned video generation across diverse robotic embodiments.' },
+                { title: 'Our Signature Control-Signal Injection Mechanism for Precise, Unified Action-Driven Generation', desc: 'By calibrating heterogeneous action spaces and policies into a unified control space, our method enables precise action-conditioned video generation across diverse robotic embodiments.' },
                 { title: 'High-Consistency Multi-View Generation for Precise Robotic World Simulation', desc: 'Generates highly consistent videos across head view and left- and right-hand views, enabling comprehensive modeling of real robot observations and more faithful simulation.' },
                 { title: 'Stable and Consistent Minute-Level Video Generation', desc: 'Delivers stable, consistent minute-level video generation, enabling realistic simulation of long-horizon action policies in embodied environments.' },
                 { title: 'Powered by Millions of Real-World Robotic Episodes, Delivering Strong Generalization Across Scenes and Tasks', desc: 'Built on large-scale teleoperation, deployment, and interaction data, the model transfers robustly across diverse environments and manipulation goals.' },
@@ -1546,17 +1573,51 @@
                 { title: 'Efficient and Scalable Simulation with Preserved Fidelity', desc: 'Incorporates an acceleration framework that improves simulation efficiency while maintaining fidelity, enabling scalable policy evaluation.' }
             ],
             zh: [
-                { title: '独创的控制信号注入范式，精准统一的动作驱动生成', desc: '通过将异构动作空间和策略校准到统一控制空间，实现跨多种机器人本体的精准动作条件视频生成。' },
-                { title: '高一致性多视角生成，精确的机器人世界模拟', desc: '在头部视角和左右手视角之间生成高度一致的视频，全面建模真实机器人观测，实现更真实的模拟。' },
-                { title: '稳定一致的分钟级长视频生成', desc: '支持长达1分钟的稳定一致视频生成，实现具身环境中长时域动作策略的逼真模拟。' },
-                { title: '百万级真实机器人数据驱动，跨场景跨任务强泛化', desc: '基于大规模遥操作、部署和交互数据训练，模型在多样化环境和操作目标间实现稳健迁移。' },
-                { title: '多样数据驱动的忠实轨迹跟随', desc: '遥操作、部署和交互数据的多样性支持更丰富的轨迹覆盖，帮助模型更忠实地跟随多样运动，减少视频生成中的幻觉。' },
-                { title: '视觉与本体感知的联合未来预测', desc: '状态专家从视频潜空间解码本体感知状态，使模拟器能同时提供未来视觉观测和本体感知信号。' },
-                { title: '集成世界裁判的自动化任务评估', desc: '集成的世界裁判奖励模型根据任务指令评估生成的rollout视频，自动衡量任务完成度并生成策略评估的奖励信号。' },
-                { title: '保真高效可扩展的模拟', desc: '融合加速框架，在保持保真度的同时提升模拟效率，实现可扩展的策略评估。' }
+                { title: '独创控制信号注入范式，实现精准统一的动作驱动生成', desc: '通过将异构动作空间与控制策略映射到统一控制空间，方法能够在多种机器人本体上实现精确的动作条件视频生成。' },
+                { title: '高一致性多视角生成，实现更真实的机器人世界模拟', desc: '在头部视角与左右手视角之间生成高度一致的视频结果，更完整地建模真实机器人观测，提升模拟真实性。' },
+                { title: '稳定一致的分钟级视频生成', desc: '支持分钟级稳定一致的视频生成，为长时域操作策略提供更加逼真的世界模型模拟。' },
+                { title: '基于海量真实机器人数据训练，具备强泛化能力', desc: '依托大规模遥操作、部署与交互数据训练，模型能够在多样场景和任务中实现稳健迁移。' },
+                { title: '多样数据驱动的忠实轨迹跟随', desc: '丰富的数据来源带来更充分的轨迹覆盖，使模型能够更忠实地跟随复杂动作轨迹，并有效缓解生成幻觉。' },
+                { title: '视觉与本体状态的联合未来预测', desc: '状态专家从视频潜变量中解码本体状态，使模拟器能够同时提供未来视觉观测与本体状态信号。' },
+                { title: '集成世界裁判的自动化任务评估', desc: '集成式世界裁判奖励模型结合任务指令对生成 rollout 进行评估，自动判断任务完成情况并输出奖励信号。' },
+                { title: '兼顾保真度与效率的可扩展模拟', desc: '在保持模拟保真度的同时提升推理效率，从而支持更大规模的策略评估与实验。' }
             ]
         };
 
+        const generatedTagText = {
+            en: 'generated vision state',
+            zh: '生成视觉状态'
+        };
+        const actionTagText = {
+            en: 'Pixel-aligned Action Condition',
+            zh: '像素对齐动作条件'
+        };
+        const inferenceTagText = {
+            en: 'GE-Sim 2.0 inference screen recording',
+            zh: 'GE-Sim 2.0 推理过程录屏'
+        };
+        const stackedNotes = {
+            en: {
+                richTrain: 'Train with Expert, Autonomous Execution, and Failure Demonstration Data',
+                expertOnly: 'Train with Expert Data Only'
+            },
+            zh: {
+                richTrain: '使用专家示范、自主执行与失败示范数据训练',
+                expertOnly: '仅使用专家示范数据训练'
+            }
+        };
+        const detailNotes = {
+            en: {
+                crossView: 'The towel is initially hidden in the blind spot of the left view. As the left arm moves, the towel comes into view and remains consistent with the main view. At the same time, the reflection in the mirror is also generated convincingly.',
+                diverseData: 'When trained with expert data only, hallucination appears: the gripper moves without actually grasping the towel, yet the towel moves with it. With more diverse training data, this hallucination disappears.',
+                stateRadar: 'The radar chart in the upper-left shows the difference between the action condition (yellow line) and the model-generated state (blue line).'
+            },
+            zh: {
+                crossView: '毛巾起初位于左视角的视野盲区中；随着左臂移动，毛巾逐渐进入视野，并与主视角中的结果保持一致。同时，镜面中的反射效果也被较好地生成出来。',
+                diverseData: '当仅使用专家示范数据训练时，模型会出现明显幻觉：夹爪在尚未抓住毛巾的情况下移动时，毛巾也会被错误地一同带动；而在使用更丰富的数据训练后，这一幻觉现象明显消失。',
+                stateRadar: '左上角的雷达图展示了动作条件（黄线）与模型生成状态（蓝线）之间的差异。'
+            }
+        };
         langToggle.addEventListener('click', () => {
             currentLang = currentLang === 'en' ? 'zh' : 'en';
             langToggle.textContent = currentLang === 'en' ? '中/EN' : 'EN/中';
@@ -1564,8 +1625,18 @@
             const t = translations[currentLang];
             document.querySelector('.hero h1').textContent = t['hero-title'];
             document.querySelector('.hero .subtitle').textContent = t['hero-subtitle'];
+            document.querySelector('[data-intro="p1"]').textContent = t['intro-p1'];
+            document.querySelector('[data-intro="p2"]').textContent = t['intro-p2'];
+            document.querySelector('[data-intro="p3"]').textContent = t['intro-p3'];
+            document.querySelector('[data-intro="p4"]').textContent = t['intro-p4'];
             document.querySelector('.capabilities-section .section-title').textContent = t['capabilities-title'];
             document.querySelector('.scenarios-section .section-title').textContent = t['scenarios-title'];
+            document.querySelector('[data-nav-research]').textContent = t['nav-research'];
+            document.querySelector('[data-hero-paper]').textContent = t['hero-paper'];
+            document.querySelector('[data-hero-paper-badge]').textContent = t['hero-paper-badge'];
+            document.querySelector('[data-hero-code]').textContent = t['hero-code'];
+            document.querySelector('[data-hero-code-badge]').textContent = t['hero-code-badge'];
+            document.querySelector('[data-task-caption-label]').textContent = t['task-caption-label'];
 
             const scenarioLabels = document.querySelectorAll('.scenario-label');
             scenarioLabels[0].textContent = t['scenario-1'];
@@ -1579,6 +1650,42 @@
                 label.querySelector('.capability-label-title').textContent = data[i].title;
                 label.querySelector('.capability-label-desc').textContent = data[i].desc;
             });
+
+            document.querySelectorAll('.generated-video-tag--generated').forEach((el) => {
+                el.textContent = generatedTagText[currentLang];
+            });
+            document.querySelectorAll('.generated-video-tag--action').forEach((el) => {
+                el.textContent = actionTagText[currentLang];
+            });
+            document.querySelectorAll('.generated-video-tag--inference').forEach((el) => {
+                el.textContent = inferenceTagText[currentLang];
+            });
+
+            document.querySelector('[data-stacked-note="rich-train"]').textContent = stackedNotes[currentLang].richTrain;
+            document.querySelector('[data-stacked-note="expert-only"]').textContent = stackedNotes[currentLang].expertOnly;
+
+            document.querySelector('[data-detail-note="cross-view"]').textContent = detailNotes[currentLang].crossView;
+            document.querySelector('[data-detail-note="diverse-data"]').textContent = detailNotes[currentLang].diverseData;
+            document.querySelector('[data-detail-note="state-radar"]').textContent = detailNotes[currentLang].stateRadar;
+
+            const rewardTitle = document.querySelector('[data-reward-title]');
+            const rewardIndex = document.querySelector('[data-reward-index]');
+            const rewardCaption = document.querySelector('[data-reward-caption-text]');
+            const rewardItems = rewardCases[currentLang];
+            const currentRewardIndex = rewardIndex ? Number((rewardIndex.textContent.match(/\d+/) || ['1'])[0]) - 1 : 0;
+            if (rewardTitle && rewardItems[currentRewardIndex]) {
+                rewardTitle.textContent = rewardItems[currentRewardIndex].title;
+            }
+            if (rewardCaption && rewardItems[currentRewardIndex]) {
+                rewardCaption.textContent = rewardItems[currentRewardIndex].caption;
+            }
+
+            const sceneTitle = document.querySelector('[data-carousel-title]');
+            const sceneIndex = document.querySelector('[data-carousel-index]');
+            const currentSceneIndex = sceneIndex ? Number((sceneIndex.textContent.match(/\d+/) || ['1'])[0]) - 1 : 0;
+            if (sceneTitle && carouselSceneTitles[currentLang][currentSceneIndex]) {
+                sceneTitle.textContent = carouselSceneTitles[currentLang][currentSceneIndex];
+            }
         });
     </script>
 </body>
