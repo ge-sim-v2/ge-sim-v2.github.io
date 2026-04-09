@@ -570,6 +570,16 @@
             transform: translateX(-50%);
         }
 
+        .generated-video-tag.center-top-small {
+            top: 2px;
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            padding: 5px 8px;
+            font-size: 9px;
+            letter-spacing: 0.06em;
+        }
+
         .capability-composite-note {
             font-family: 'IBM Plex Mono', monospace;
             font-size: 12px;
@@ -1010,7 +1020,7 @@
                         </video>
                         <span class="generated-video-tag center-top">generated vision state</span>
                     </div>
-                    <div class="capability-detail-note">The towel is initially hidden in the blind spot of the left view. As the left arm moves, the towel comes into view and remains consistent with the main view.</div>
+                    <div class="capability-detail-note">The towel is initially hidden in the blind spot of the left view. As the left arm moves, the towel comes into view and remains consistent with the main view. At the same time, the reflection in the mirror is also generated convincingly.</div>
                 </div>
                 <div class="capability-item fade-in">
                     <div class="capability-label">
@@ -1088,7 +1098,7 @@
                                 <video class="capability-video" autoplay muted loop playsinline controls>
                                     <source src="assets/converted/capability_5_expert_only.mp4" type="video/mp4">
                                 </video>
-                                <span class="generated-video-tag center-top">generated vision state</span>
+                                <span class="generated-video-tag center-top-small">generated vision state</span>
                             </div>
                         </div>
                         <div class="stacked-video-item">
@@ -1097,7 +1107,7 @@
                                 <video class="capability-video" autoplay muted loop playsinline controls>
                                     <source src="assets/converted/capability_5_rich_data.mp4" type="video/mp4">
                                 </video>
-                                <span class="generated-video-tag center-top">generated vision state</span>
+                                <span class="generated-video-tag center-top-small">generated vision state</span>
                             </div>
                         </div>
                     </div>
@@ -1128,7 +1138,7 @@
                     </div>
                     <div class="overlay-video-caption">
                         <span class="overlay-video-caption-label">Task Caption</span>
-                        <span class="overlay-video-caption-text" data-reward-caption-text>Pick up the blue bagged potato chips on the table. Put the held blue bagged potato chips into the red square plastic basket on the table.</span>
+                        <span class="overlay-video-caption-text" data-reward-caption-text>Put the blue chips into the red box.</span>
                     </div>
                     <div class="video-carousel" data-reward-carousel>
                         <div class="video-carousel-frame">
@@ -1376,7 +1386,7 @@
             const items = [
                 {
                     title: 'Case 1',
-                    caption: 'Pick up the blue bagged potato chips on the table. Put the held blue bagged potato chips into the red square plastic basket on the table.'
+                    caption: 'Put the blue chips into the red box.'
                 },
                 {
                     title: 'Case 2',
